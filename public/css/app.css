@@ -1,0 +1,9 @@
+.thuoc-panigation{
+    margin-top:10px;
+    display:flex
+}
+
+.thuoc-panigation div {
+    margin-right: 18px;
+}
+

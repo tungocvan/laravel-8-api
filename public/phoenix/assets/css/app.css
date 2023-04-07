@@ -1,0 +1,8 @@
+.footer-border-right{
+    border-right: #ccc 1px solid;
+}
+
+.user-avatar-l{
+    display: flex;
+    align-items:center;
+}

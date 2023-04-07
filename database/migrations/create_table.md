@@ -1,0 +1,2 @@
+php artisan make:migration create_ketquathau_table
+php artisan migrate
