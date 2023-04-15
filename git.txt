@@ -1,0 +1,11 @@
+git remote rm origin
+git remote add origin git@github.com:tungocvan/laravel-8-api.git
+git push --set-upstream origin main
+
+
+phan quyen ssh:
+Tạo cặp khóa SSH
+ssh-keygen -t rsa -b 4096 -C "tungocvan@gmail.com"
+cat ~/.ssh/id_rsa.pub
+ Thêm khóa SSH vào Github
+
