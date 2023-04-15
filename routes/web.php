@@ -51,8 +51,10 @@ Route::get('/home-phoenix', function () {
 
 
 
-Route::get('/home-phoenix/{slug}', function ($slug) {              
-    return view('phoenix',['content'=>$slug]);
+Route::get('/home-phoenix/{slug}', function ($slug,Request $request) {   
+    //dd($request->name);
+    $data = ['status' => 'THÔNG TIN DMS BÁN HÀNG'];
+    return view('phoenix',['content'=>$slug,'data' => $data]);
 });
 
 Route::post('/home-phoenix/upload', function (Request $request) { 

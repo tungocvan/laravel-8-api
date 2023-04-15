@@ -34,7 +34,7 @@ class ThuocController extends Controller
         //$page = isset($_GET['page']) ? intval($_GET['page']) : 1;                
         $products = $productsAll->items();
         return view('admin.layout',['action' => $uri, 'data' => $data, 'total_pages' => $total_pages,'page' => $page,'products' => $productsAll, 'myArray' => $data]); 
-        
+         
         
     }
 }

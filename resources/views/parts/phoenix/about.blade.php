@@ -1,4 +1,4 @@
 @php 
     $myAsset = asset('phoenix/assets'); 
 @endphp
-<h3>About</h3>
+<h3>{{$data['status']}}</h3>
