@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Storage;
 use App\Models\Thuoc;
+use App\Models\Hoso;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -30,14 +31,21 @@ Route::post('/upload', function (Request $request) {
             $filename =$phone.'-'.$date.'-'.$file->getClientOriginalName() ;            
             $path = $file->storeAs('uploads', $filename);
         
+            // luu datase //
+            $status = Hoso::create([
+                'name' => $name,
+                'email' => $email,
+                'phone' => $phone,
+                'filename' => $filename,
+                'status' => 'pending',
+                
+            ]);
+            // luu thanh cong roi gui mail
+
+            // gui mail thanh cong thi tra ve
             return response()->json([
                 'path' => $path,
-                'data' => [
-                    'name' => $name,
-                    'email' => $email,
-                    'phone' => $phone,
-                    'filename' => $filename,
-                ]
+                'data' => $status
              
             ]);
         }
@@ -46,6 +54,7 @@ Route::post('/upload', function (Request $request) {
             'error' => 'Invalid file'
         ]);
 });
+
 
 
 Route::get('/tracuu/thuoc/trungthau', function (Request $request) {
@@ -60,5 +69,20 @@ Route::get('/tracuu/thuoc/trungthau', function (Request $request) {
     $products = Thuoc::select($columns)->where($field, 'like',"$content%")->paginate($perPage = 15)->fragment('products');
     return response()->json([
         'data' => $products
+    ]);
+});
+
+
+// Route::post('/ntd/nophoso', function (Request $request) {
+//     $phone = $request->phone;
+//     return response()->json([
+//         'status' => $request->phone
+//     ]);
+// });
+
+Route::get('/tracuu/hoso/{phone}', function ($phone) {
+    $itemHoso = Hoso::where('phone','like',"$phone%")->get();
+    return response()->json([
+        'phone' => $itemHoso
     ]);
 });
