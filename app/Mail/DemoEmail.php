@@ -29,7 +29,7 @@ class DemoEmail extends Mailable
      */
     public function build()
     {
-        return $this->subject('Demo Email from Laravel 8')
+        return $this->subject('Hồ Sơ Quý Phụ Huynh đã gửi đến chúng tôi.')
                     ->view('emails.demo')
                     ->with('details', $this->details);
     }
