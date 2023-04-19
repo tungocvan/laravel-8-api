@@ -59,12 +59,11 @@ Route::post('/upload', function (Request $request) {
             $details = [
                 'title' => 'Nguyễn Thị Định xin Thông báo',
                 'body' => "Chúng tôi đã nhận được hồ sơ của Phụ Huynh: $name - số điện thoại: $phone ",
-                'attach' => "https://api.tungocvan.com/api/download/$filename"
-                
+                'attach' => env('URL_ATTACH') . $filename;                
             ];
         
          
-            $ccEmail = 'tungocvan@gmail.com';
+            $ccEmail = env('CC_EMAIL', 'tungocvan@gmail.com');
 
             if($email){
                 Mail::to($email)->cc($ccEmail)->send(new DemoEmail($details));
