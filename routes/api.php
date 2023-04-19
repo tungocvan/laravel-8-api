@@ -59,7 +59,7 @@ Route::post('/upload', function (Request $request) {
             $details = [
                 'title' => 'Nguyễn Thị Định xin Thông báo',
                 'body' => "Chúng tôi đã nhận được hồ sơ của Phụ Huynh: $name - số điện thoại: $phone ",
-                'attach' => "http://127.0.0.1:8000/api/download/$filename"
+                'attach' => "https://api.tungocvan.com/api/download/$filename"
                 
             ];
         
