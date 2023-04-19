@@ -1,10 +1,12 @@
 <?php
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Storage;
 use App\Models\Thuoc;
 use App\Models\Hoso;
+use App\Mail\DemoEmail;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -41,7 +43,14 @@ Route::post('/upload', function (Request $request) {
                 
             ]);
             // luu thanh cong roi gui mail
-
+            $details = [
+                'title' => 'Mail from Laravel 8',
+                'body' => 'This is a demo email for testing purposes.'
+            ];
+        
+            Mail::to('tungocvan@gmail.com')->send(new DemoEmail($details));
+        
+            //return 'Email sent successfully!';
             // gui mail thanh cong thi tra ve
             return response()->json([
                 'path' => $path,
