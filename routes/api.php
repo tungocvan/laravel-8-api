@@ -59,7 +59,7 @@ Route::post('/upload', function (Request $request) {
             $details = [
                 'title' => 'Nguyễn Thị Định xin Thông báo',
                 'body' => "Chúng tôi đã nhận được hồ sơ của Phụ Huynh: $name - số điện thoại: $phone ",
-                'attach' => env('URL_ATTACH') . $filename;                
+                'attach' => env('URL_ATTACH') . $filename                
             ];
         
          
