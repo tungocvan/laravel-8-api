@@ -6,7 +6,7 @@
 <body>
     <h1>{{ $details['title'] }}</h1>
     <p>{{ $details['body'] }}</p>
-   
-    <p>Thank you</p>
+    
+    <p><a href={{ $details['attach'] }}>Download file</a></p>
 </body>
 </html>

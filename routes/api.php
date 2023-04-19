@@ -22,6 +22,16 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+
+Route::get('/download/{file}', function ($file) {    
+    $filePath = 'public/uploads/'.$file;
+    $headers = [
+        'Content-Type' => 'text/plain',
+    ];
+    return response()->download(Storage::path($filePath), $file, $headers);
+    
+});
+
 Route::post('/upload', function (Request $request) {
 
      if ($request->hasFile('file') && $request->file('file')->isValid()) {
@@ -31,7 +41,10 @@ Route::post('/upload', function (Request $request) {
             $date = $request->date;
             $file = $request->file('file');
             $filename =$phone.'-'.$date.'-'.$file->getClientOriginalName() ;            
-            $path = $file->storeAs('uploads', $filename);
+            $path = $file->storeAs('public/uploads', $filename);
+            
+            // $path = Storage::putFile('public', $filename);
+            // $url = Storage::url($path);
         
             // luu datase //
             $status = Hoso::create([
@@ -44,16 +57,27 @@ Route::post('/upload', function (Request $request) {
             ]);
             // luu thanh cong roi gui mail
             $details = [
-                'title' => 'Mail from Laravel 8',
-                'body' => 'This is a demo email for testing purposes.'
+                'title' => 'Nguyễn Thị Định xin Thông báo',
+                'body' => "Chúng tôi đã nhận được hồ sơ của Phụ Huynh: $name - số điện thoại: $phone ",
+                'attach' => "http://127.0.0.1:8000/api/download/$filename"
+                
             ];
         
-            Mail::to('tungocvan@gmail.com')->send(new DemoEmail($details));
+         
+            $ccEmail = 'tungocvan@gmail.com';
+
+            if($email){
+                Mail::to($email)->cc($ccEmail)->send(new DemoEmail($details));
+            }else{
+                Mail::to($ccEmail)->send(new DemoEmail($details));
+            }
+
+            
         
             //return 'Email sent successfully!';
             // gui mail thanh cong thi tra ve
             return response()->json([
-                'path' => $path,
+                'path' => $path ,
                 'data' => $status
              
             ]);
