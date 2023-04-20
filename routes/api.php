@@ -87,6 +87,14 @@ Route::post('/upload', function (Request $request) {
         ]);
 });
 
+Route::post('/update', function (Request $request) {
+ 
+    return response()->json([
+        'id' => $request->id,
+        'status' => $request->status,
+        'noidung' => $request->noidung
+    ]);
+});
 
 
 Route::get('/tracuu/thuoc/trungthau', function (Request $request) {
@@ -116,5 +124,12 @@ Route::get('/tracuu/hoso/{phone}', function ($phone) {
     $itemHoso = Hoso::where('phone','like',"$phone%")->get();
     return response()->json([
         'phone' => $itemHoso
+    ]);
+});
+
+Route::get('/tracuu/hoso', function () {
+    $itemHoso = Hoso::paginate($perPage = 50)->fragment('hoso');
+    return response()->json([
+        'hoso' => $itemHoso
     ]);
 });
