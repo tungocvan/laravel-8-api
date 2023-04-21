@@ -89,10 +89,29 @@ Route::post('/upload', function (Request $request) {
 
 Route::post('/update', function (Request $request) {
     $idHoso = Hoso::find($request->id);
+
     $idHoso->update([
         'status' => $request->status,
         'content' => $request->noidung
     ]);
+
+    
+
+    $details = [
+        'title' => 'Nguyễn Thị Định thông báo',
+        'body' => "Chúng tôi đã xữ lý hồ sơ của Phụ huynh: <strong>$idHoso->name</strong> - Số điện thoại: <strong>$idHoso->email</strong>",
+        'attach' => env('URL_ATTACH') . $idHoso->filename                
+    ];
+
+ 
+    $ccEmail = env('CC_EMAIL', 'tungocvan@gmail.com');
+
+    if($email){
+        Mail::to($email)->cc($ccEmail)->send(new DemoEmail($details));
+    }else{
+        Mail::to($ccEmail)->send(new DemoEmail($details));
+    }
+
     return response()->json([
         'id' => $request->id,
         'status' => $request->status,
