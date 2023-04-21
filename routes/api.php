@@ -90,12 +90,13 @@ Route::post('/upload', function (Request $request) {
 Route::post('/update', function (Request $request) {
     $idHoso = Hoso::find($request->id);
 
+
     $idHoso->update([
         'status' => $request->status,
         'content' => $request->noidung
     ]);
 
-    
+    $email = $idHoso->email;
 
     $details = [
         'title' => 'Nguyễn Thị Định thông báo',
