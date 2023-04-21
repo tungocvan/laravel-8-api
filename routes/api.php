@@ -57,8 +57,8 @@ Route::post('/upload', function (Request $request) {
             ]);
             // luu thanh cong roi gui mail
             $details = [
-                'title' => 'Nguyễn Thị Định xin Thông báo',
-                'body' => "Chúng tôi đã nhận được hồ sơ của Phụ Huynh: $name - số điện thoại: $phone ",
+                'title' => 'Nguyễn Thị Định thông báo',
+                'body' => "Chúng tôi đã nhận được hồ sơ của Phụ huynh: $name - số điện thoại: $phone ",
                 'attach' => env('URL_ATTACH') . $filename                
             ];
         
