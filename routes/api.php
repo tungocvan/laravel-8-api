@@ -88,11 +88,24 @@ Route::post('/upload', function (Request $request) {
 });
 
 Route::post('/update', function (Request $request) {
- 
+    $idHoso = Hoso::find($request->id);
+    $idHoso->update([
+        'status' => $request->status,
+        'content' => $request->noidung
+    ]);
     return response()->json([
         'id' => $request->id,
         'status' => $request->status,
-        'noidung' => $request->noidung
+        'content' => $request->noidung
+    ]);
+});
+
+Route::post('/delete', function (Request $request) {
+    $idHoso = Hoso::find($request->id);
+    $idHoso->delete();
+    return response()->json([
+        'id' => $request->id,
+
     ]);
 });
 

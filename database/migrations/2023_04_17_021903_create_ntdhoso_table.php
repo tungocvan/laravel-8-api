@@ -19,6 +19,7 @@ class CreateNtdhosoTable extends Migration
             $table->string('email')->nullable();
             $table->string('phone')->nullable();
             $table->text('filename')->nullable();
+            $table->text('content')->nullable();
             $table->text('status')->nullable();
             $table->timestamps();
         });

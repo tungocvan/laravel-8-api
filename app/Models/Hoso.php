@@ -9,5 +9,5 @@ class Hoso extends Model
 {
     use HasFactory;
     protected $table = "ntdhoso";
-    protected $fillable = ['name', 'email','phone','filename','status'];
+    protected $fillable = ['name', 'email','phone','filename','status','content'];
 }
