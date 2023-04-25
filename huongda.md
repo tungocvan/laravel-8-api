@@ -9,3 +9,5 @@ Thư mục public/storage: Chứa các tệp tin đã được lưu trữ công 
 Thư mục bootstrap/cache: Chứa các tệp cache tạo ra trong quá trình chạy ứng dụng Laravel. Có thể tái tạo lại các tệp cache này sau khi phục hồi dự án bằng lệnh php artisan optimize hoặc php artisan config:cache.
 
 Chú ý rằng việc bỏ qua các thư mục này trong quá trình sao lưu có thể giúp giảm dung lượng bản sao lưu và tốc độ phục hồi dự án, do các thư mục này có thể được phục hồi lại hoặc tái tạo lại bằng các lệnh Laravel hoặc công cụ quản lý gói như Composer và npm/Yarn.
+
+sau khi upload lên host nếu host chạy apache thì vui lòng copy .htaccess vào thư mục gốc

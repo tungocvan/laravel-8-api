@@ -90,21 +90,35 @@ Route::post('/upload', function (Request $request) {
 Route::post('/update', function (Request $request) {
     $idHoso = Hoso::find($request->id);
 
+    $date = $request->date;    
+    $file = $request->file('file');
+    if($file){
+        $filename =$date.'-'.$file->getClientOriginalName() ;            
+        $path = $file->storeAs('public/uploads', $filename);
+        $idHoso->update([
+            'status' => $request->status,
+            'content' => $request->noidung,
+            'filename' => $filename
+        ]);
+        $details = [
+            'title' => 'Nguyễn Thị Định thông báo',
+            'body' => "Chúng tôi đã xữ lý hồ sơ của Phụ huynh: <strong>$idHoso->name</strong> - Số điện thoại: <strong>$idHoso->email</strong>",
+            'attach' => env('URL_ATTACH') . $idHoso->filename                
+        ];
+    }else{
+        $idHoso->update([
+            'status' => $request->status,
+            'content' => $request->noidung
+        ]);
+        $details = [
+            'title' => 'Nguyễn Thị Định thông báo',
+            'body' => "Chúng tôi đã xữ lý hồ sơ của Phụ huynh: <strong>$idHoso->name</strong> - Số điện thoại: <strong>$idHoso->email</strong>",     
+            'attach' => null     
+        ];
+    }
+    
+     $email = $idHoso->email;
 
-    $idHoso->update([
-        'status' => $request->status,
-        'content' => $request->noidung
-    ]);
-
-    $email = $idHoso->email;
-
-    $details = [
-        'title' => 'Nguyễn Thị Định thông báo',
-        'body' => "Chúng tôi đã xữ lý hồ sơ của Phụ huynh: <strong>$idHoso->name</strong> - Số điện thoại: <strong>$idHoso->email</strong>",
-        'attach' => env('URL_ATTACH') . $idHoso->filename                
-    ];
-
- 
     $ccEmail = env('CC_EMAIL', 'tungocvan@gmail.com');
 
     if($email){
