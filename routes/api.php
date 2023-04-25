@@ -112,7 +112,7 @@ Route::post('/update', function (Request $request) {
         ]);
         $details = [
             'title' => 'Nguyễn Thị Định thông báo',
-            'body' => "Chúng tôi đã xữ lý hồ sơ của Phụ huynh: <b> $idHoso->name </b>- Số điện thoại: $idHoso->email \n Hồ sơ quý Phụ huynh đã bị từ chối với lý do: $request->noidung",     
+            'body' => "Chúng tôi đã xữ lý hồ sơ của Phụ huynh: <b>$idHoso->name</b> - Số điện thoại: $idHoso->email \n Hồ sơ quý Phụ huynh đã bị từ chối với lý do: $request->noidung",     
             'attach' => null     
         ];
     }
