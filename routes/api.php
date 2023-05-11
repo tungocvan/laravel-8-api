@@ -122,10 +122,13 @@ Route::post('/update', function (Request $request) {
     $ccEmail = env('CC_EMAIL', 'tungocvan@gmail.com');
 
     if($email){
-        Mail::to($email)->cc($ccEmail)->send(new DemoEmail($details));
-    }else{
-        Mail::to($ccEmail)->send(new DemoEmail($details));
+        Mail::to($email)->send(new DemoEmail($details));
     }
+    // if($email){
+    //     Mail::to($email)->cc($ccEmail)->send(new DemoEmail($details));
+    // }else{
+    //     Mail::to($ccEmail)->send(new DemoEmail($details));
+    // }
 
     return response()->json([
         'id' => $request->id,

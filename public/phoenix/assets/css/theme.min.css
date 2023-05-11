@@ -27098,7 +27098,7 @@ html:not(.navbar-vertical-collapsed) .navbar-vertical.navbar-expand-xs .navbar-v
     .navbar-vertical-collapsed .navbar-vertical.navbar-expand-lg .nav-item-wrapper:hover .nav-link-text-wrapper .nav-link-text {
         width: 220px;
         background: var(--phoenix-navbar-vertical-collapsed-menu-bg);
-        margin-left: 16px;
+        margin-left: 5px;
         border-radius: .5rem;
         position: relative;
         padding-bottom: 8px;
